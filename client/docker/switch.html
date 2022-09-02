@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        if ((navigator.userAgent.indexOf('MSIE') >= 0) && (navigator.userAgent.indexOf('Opera') < 0)) {
+            var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+            if (isIE11) {
+                window.location.replace("/latest/es5");
+            }
+        }
+        else if (navigator.userAgent.indexOf('Chrome') >= 0) {
+            window.location.replace("/latest/es6");
+        }
+        else {
+            window.location.replace("/latest/es6");
+        }
+    </script>
+</head>
+
+<body>
+    
+    Index page to automatically redirect to
+    <ul>
+        <li><a href="/latest/es5">ES5 Version (IE 11 Support)</a></li>
+        <li><a href="/latest/es6">ES6 Version (Modern Browser Support))</a></li>
+    </ul>
+</body>
+
+</html>

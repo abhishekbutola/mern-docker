@@ -1,0 +1,40 @@
+version: "3"
+services:
+  client:
+      image: mhart/alpine-node:latest
+      restart: always
+      working_dir: /training/mern/movies-app/client
+      ports:
+       - "80:8000"    
+      entrypoint: ["npm","start"]
+      depends_on:
+       - server
+      networks:
+       - webappnetwork
+
+  server:
+      image: mhart/alpine-node:latest
+      restart: always
+      ports:
+       - "8000:8000"
+      depends_on:
+       - mongodb
+      networks:
+       - webappnetwork
+
+  mongodb:
+      image: mongo:latest
+      restart: always
+      container_name: mongodb
+      ports:
+       - "27017:27017"
+      volumes:
+       - db_data:/data/db 
+      networks:
+       - webappnetwork 
+
+networks:
+  webappnetwork:    
+      driver: bridge    
+volumes:
+  db_data: {}
